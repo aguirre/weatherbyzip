@@ -21,13 +21,8 @@ $("#zipSearch").on("click", function(e) {
         ".png'>"
     );
     $(".weather").text("Weather: " + response.list[0].weather[0].description);
-    $(".temp").text(
-      "Temperature: High " +
-        response.list[0].temp.max +
-        " F | Low " +
-        response.list[0].temp.min +
-        " F"
-    );
+    $(".temp-hi").text("High: " + response.list[0].temp.max + " F");
+    $(".temp-lo").text("Low: " + response.list[0].temp.min + " F");
     $(".humidity").text("Humidity: " + response.list[0].humidity);
     $(".wind").text("Wind Speed: " + response.list[0].speed);
   });
