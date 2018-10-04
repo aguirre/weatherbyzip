@@ -10,7 +10,8 @@ button {
   margin-top: 5px;
 }
 img {
-  padding: 5px;
+  width: 100%;
+  height: auto;
 }
 .container {
   padding: 10px;
