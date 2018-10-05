@@ -6,13 +6,13 @@ $("#weatherSearch").on("click", function(e) {
 
   // API For Weather Info by ZIP Code
   var APIKey = "166a433c57516f51dfab1f7edaed8413";
-  var queryURL =
+  var weatherURL =
     "https://api.openweathermap.org/data/2.5/forecast/daily?zip=" +
     weatherZip +
     ",us&units=imperial&cnt=16&appid=" +
     APIKey;
   $.ajax({
-    url: queryURL,
+    url: weatherURL,
     method: "GET"
   }).then(function(response) {
     console.log(response);
@@ -29,9 +29,9 @@ $("#weatherSearch").on("click", function(e) {
   });
 
   // API to get City name by ZIP Code
-  var queryURL2 = "https://api.zippopotam.us/us/" + weatherZip;
+  var zipURL = "https://api.zippopotam.us/us/" + weatherZip;
   $.ajax({
-    url: queryURL2,
+    url: zipURL,
     method: "GET"
   }).then(function(response) {
     console.log(response);
