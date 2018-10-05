@@ -4,7 +4,7 @@ $("#weatherSearch").on("click", function(e) {
     .val()
     .trim();
 
-  // API For Weather Info
+  // API For Weather Info by ZIP Code
   var APIKey = "166a433c57516f51dfab1f7edaed8413";
   var queryURL =
     "https://api.openweathermap.org/data/2.5/forecast/daily?zip=" +
@@ -17,7 +17,7 @@ $("#weatherSearch").on("click", function(e) {
   }).then(function(response) {
     console.log(response);
     $(".icon").html(
-      "<img src='http://openweathermap.org/img/w/" +
+      "<img src='https://openweathermap.org/img/w/" +
         response.list[0].weather[0].icon +
         ".png'>"
     );
@@ -29,7 +29,7 @@ $("#weatherSearch").on("click", function(e) {
   });
 
   // API to get City name by ZIP Code
-  var queryURL2 = "http://api.zippopotam.us/us/" + weatherZip;
+  var queryURL2 = "https://api.zippopotam.us/us/" + weatherZip;
   $.ajax({
     url: queryURL2,
     method: "GET"
