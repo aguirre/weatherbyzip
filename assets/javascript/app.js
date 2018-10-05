@@ -14,7 +14,7 @@ $("#weatherSearch").on("click", function(e) {
     method: "GET"
   }).then(function(response) {
     console.log(response);
-    $(".city").html("<h1>" + weatherZip + " Weather Details</h1>");
+    $(".city").html("<h1>" + response.city.name + " Weather Details</h1>");
     $(".icon").html(
       "<img src='http://openweathermap.org/img/w/" +
         response.list[0].weather[0].icon +
