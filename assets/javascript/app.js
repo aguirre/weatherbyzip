@@ -1,12 +1,12 @@
-$("#zipSearch").on("click", function(e) {
+$("#weatherSearch").on("click", function(e) {
   event.preventDefault();
-  var zipcode = $("#zipInput")
+  var weatherZip = $("#weatherInput")
     .val()
     .trim();
   var APIKey = "166a433c57516f51dfab1f7edaed8413";
   var queryURL =
     "https://api.openweathermap.org/data/2.5/forecast/daily?zip=" +
-    zipcode +
+    weatherZip +
     ",us&units=imperial&cnt=16&appid=" +
     APIKey;
   $.ajax({
@@ -14,7 +14,7 @@ $("#zipSearch").on("click", function(e) {
     method: "GET"
   }).then(function(response) {
     console.log(response);
-    $(".city").html("<h1>" + response.city.name + " Weather Details</h1>");
+    $(".city").html("<h1>" + weatherZip + " Weather Details</h1>");
     $(".icon").html(
       "<img src='http://openweathermap.org/img/w/" +
         response.list[0].weather[0].icon +
