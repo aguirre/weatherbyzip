@@ -3,6 +3,8 @@ $("#weatherSearch").on("click", function(e) {
   var weatherZip = $("#weatherInput")
     .val()
     .trim();
+
+  // API For Weather Info
   var APIKey = "166a433c57516f51dfab1f7edaed8413";
   var queryURL =
     "https://api.openweathermap.org/data/2.5/forecast/daily?zip=" +
@@ -14,7 +16,6 @@ $("#weatherSearch").on("click", function(e) {
     method: "GET"
   }).then(function(response) {
     console.log(response);
-    $(".city").html("<h1>" + response.city.name + " Weather Details</h1>");
     $(".icon").html(
       "<img src='http://openweathermap.org/img/w/" +
         response.list[0].weather[0].icon +
@@ -26,7 +27,18 @@ $("#weatherSearch").on("click", function(e) {
     $(".humidity").text("Humidity: " + response.list[0].humidity);
     $(".wind").text("Wind Speed: " + response.list[0].speed);
   });
+
+  // API to get City name by ZIP Code
+  var queryURL2 = "http://api.zippopotam.us/us/" + weatherZip;
+  $.ajax({
+    url: queryURL2,
+    method: "GET"
+  }).then(function(response) {
+    console.log(response);
+    $(".city").html(
+      "<h1>" + response.places[0]["place name"] + " Weather Details</h1>"
+    );
+  });
 });
 
 // make 4 loop for days
-// days have icon / temp hi and low / description / wind
