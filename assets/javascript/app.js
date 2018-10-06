@@ -52,18 +52,18 @@ $("#weatherSearch").on("click", function(e) {
 });
 
 //! make 4 loop for days
-// for (var i = 0; i < response.list[i].length; i++) {
+// for (var i = 0; i < response.list.length; i++) {
 //   var newRow = $("<tr>").append(
 //     $("<td>").html("<h3>" + unixConvert + "</h3>"),
 //     $("<td>").html(
 //       "<img src='https://openweathermap.org/img/w/" +
-//         response.list[0].weather[0].icon +
+//         response.list[i].weather[i].icon +
 //         ".png'>"
 //     ),
-//     $("<td>").text(response.list[0].weather[0].description),
-//     $("<td>").text("High: " + Math.round(response.list[0].temp.max) + "° F"),
-//     $("<td>").text("Low: " + Math.round(response.list[0].temp.min) + "° F"),
-//     $("<td>").text("Wind: " + response.list[0].speed + " mph")
+//     $("<td>").text(response.list[i].weather[i].description),
+//     $("<td>").text("High: " + Math.round(response.list[i].temp.max) + "° F"),
+//     $("<td>").text("Low: " + Math.round(response.list[i].temp.min) + "° F"),
+//     $("<td>").text("Wind: " + response.list[i].speed + " mph")
 //   );
 //   $("#weatherRow > tbody").append(newRow);
 // }
