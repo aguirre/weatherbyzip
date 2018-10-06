@@ -32,38 +32,35 @@ $("#weatherSearch").on("click", function(e) {
     method: "GET"
   }).then(function(response) {
     console.log(response);
-    $(".icon").html(
-      "<img src='https://openweathermap.org/img/w/" +
-        response.list[0].weather[0].icon +
-        ".png'>"
-    );
-    $(".weather").text(response.list[0].weather[0].description);
-    $(".temp-hi").text(
-      "High: " + Math.round(response.list[0].temp.max) + "° F"
-    );
-    $(".temp-lo").text("Low: " + Math.round(response.list[0].temp.min) + "° F");
-    $(".wind").text("Wind: " + response.list[0].speed + " mph");
+    $("#weatherRow").empty();
 
-    // Converts Unix Timestamp to Date
-    var unixConvert = moment.unix(response.list[0].dt).format("dddd, MMM D");
-    console.log(unixConvert);
-    $(".weatherDate").html("<h3>" + unixConvert + "</h3>");
+    // For loop to get weather data for 7 days
+    for (var i = 0; i < response.list.length; i++) {
+      // Convert Unix Timestamp to Date
+      var unixConvert = moment.unix(response.list[i].dt).format("ddd, MMM D");
+
+      var newDiv = $("<div>")
+        .append(
+          $("<p>").text(unixConvert),
+          $("<img>").attr(
+            "src",
+            "https://openweathermap.org/img/w/" +
+              response.list[i].weather[0].icon +
+              ".png"
+          ),
+          $("<p>")
+            .text(response.list[i].weather[0].description)
+            .addClass("weather"),
+          $("<p>").text(
+            "High: " + Math.round(response.list[i].temp.max) + "° F"
+          ),
+          $("<p>").text(
+            "Low: " + Math.round(response.list[i].temp.min) + "° F"
+          ),
+          $("<p>").text("Wind: " + response.list[i].speed + " mph")
+        )
+        .addClass("col");
+      $("#weatherRow").append(newDiv);
+    }
   });
 });
-
-//! make 4 loop for days
-// for (var i = 0; i < response.list.length; i++) {
-//   var newRow = $("<tr>").append(
-//     $("<td>").html("<h3>" + unixConvert + "</h3>"),
-//     $("<td>").html(
-//       "<img src='https://openweathermap.org/img/w/" +
-//         response.list[i].weather[i].icon +
-//         ".png'>"
-//     ),
-//     $("<td>").text(response.list[i].weather[i].description),
-//     $("<td>").text("High: " + Math.round(response.list[i].temp.max) + "° F"),
-//     $("<td>").text("Low: " + Math.round(response.list[i].temp.min) + "° F"),
-//     $("<td>").text("Wind: " + response.list[i].speed + " mph")
-//   );
-//   $("#weatherRow > tbody").append(newRow);
-// }
