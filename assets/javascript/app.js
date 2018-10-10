@@ -1,3 +1,15 @@
+//Initializes Firebase
+var config = {
+  apiKey: "AIzaSyBjGRRH-D9on39fIy_ONecJ7eipfwvgqLE",
+  authDomain: "database-ma.firebaseapp.com",
+  databaseURL: "https://database-ma.firebaseio.com",
+  projectId: "database-ma",
+  storageBucket: "database-ma.appspot.com",
+  messagingSenderId: "882902767603"
+};
+firebase.initializeApp(config);
+var weatherData = firebase.database().ref("/weather/");
+
 $("#weatherSearch").on("click", function(e) {
   event.preventDefault();
   var weatherZip = $("#weatherInput")
@@ -61,6 +73,14 @@ $("#weatherSearch").on("click", function(e) {
         )
         .addClass("col");
       $("#weatherRow").append(newDiv);
+      weatherData.child(weatherZip).push({
+        date: moment.unix(response.list[i].dt).format(),
+        icon: response.list[i].weather[0].icon,
+        condition: response.list[i].weather[0].description,
+        high: Math.round(response.list[i].temp.max),
+        low: Math.round(response.list[i].temp.min),
+        wind: response.list[i].speed
+      });
     }
   });
 });
